@@ -1,7 +1,6 @@
 package collectiondemo;
 
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.Map.Entry;
 import java.util.TreeMap;
 
@@ -17,7 +16,6 @@ public class TreeMapDemo2 {
 		hm.put(422009, "kerala");
 		
 		
-
 		
 		for(Entry<Integer,String> e:hm.entrySet()) {
 			System.out.println(e.getKey());

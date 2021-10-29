@@ -1,5 +1,5 @@
 package collectiondemo;
-public class Player {
+public class Player implements Comparable<Player>{
 	private int playerId;
 	private String playerName;
 	private String countryName;
@@ -25,5 +25,16 @@ public class Player {
 	public String toString() {
 		return "Player [playerId=" + playerId + ", playerName=" + playerName + ", countryName=" + countryName + "]";
 	}
+	@Override
+	public int compareTo(Player o) {
+		if(this.playerId>o.playerId) {
+			return 1;
+		}
+		if(this.playerId<o.playerId) {
+			return -1;
+		}
+		return 0;
+	}
+	
 	
 }
