@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- Application context is going to look for spring-bean-configuration.xml file
+	and it will look for <bean> tag but we instructed application context we are
+	using annotation @Component as a bean configuration and we instruct 
+	application context to scan the classpath src/main/java
+	Any class marked with @Component annotation with then make that class as bean 
+	inside the application context IOC container  -->
+	
+	<context:annotation-config></context:annotation-config>
+	<context:component-scan base-package="com.demo.model"></context:component-scan>
+	<context:component-scan base-package="com.demo.main"></context:component-scan>
+</beans>
