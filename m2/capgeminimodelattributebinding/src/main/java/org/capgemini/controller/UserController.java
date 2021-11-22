@@ -5,7 +5,9 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.capgemini.model.User;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,48 +39,17 @@ public class UserController {
 	}
 	@RequestMapping("/signup")
 	public ModelAndView signupPage() {
+		User user=new User();
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("signup");// /WEB-INF/services.jsp
+		mav.addObject("u", user);
+		mav.setViewName("signup");
 		return mav;
 	}
-	@RequestMapping("/submitsignuprequestheader")
-	public ModelAndView getRequestHeader(@RequestHeader Map<String,String> headers) {
-		for(String headerName:headers.keySet()) {
-			System.out.println(headerName+"  "+headers.get(headerName));
-		}
-		
-		ModelAndView mav=new ModelAndView();
-		return mav;
-	}
-	@RequestMapping("/submitsignuprequestheader1")
-	public ModelAndView getRequestHeader1(
-			@RequestHeader("Accept-Language") String lang,
-			@RequestHeader("User-Agent") String agent) {
-		System.out.println(lang);
-		System.out.println(agent);
-		ModelAndView mav=new ModelAndView();
-		return mav;
-	}
+	
 	@RequestMapping("/submitsignup")
-	public ModelAndView submitSignupPage(
-			// HttpRequestHeader -> query param value taken based on the param name
-			@RequestParam("username") String uname,
-			@RequestParam("userpassword") String upass,
-			@RequestParam("usergender") String ugender,
-			@RequestParam("useremail") String uemail,
-			@RequestParam("userphone") long uphone,
-			@RequestParam("useraddress") String uaddress,
-			@RequestParam("usercity") String ucity) {
-		System.out.println("submit sign up invoked: "+uname+" "+upass);
+	public ModelAndView submitSignupPage(@ModelAttribute("u") User us) {
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("un", uname);
-		mav.addObject("up", upass);
-		mav.addObject("ug", ugender);
-		mav.addObject("ue", uemail);
-		mav.addObject("uph", uphone);
-		mav.addObject("ua", uaddress);
-		mav.addObject("uc", ucity);
-		
+		mav.addObject("use", us);
 		mav.setViewName("result");// /WEB-INF/result.jsp
 		return mav;
 	}
