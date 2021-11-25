@@ -17,4 +17,18 @@ public class BankService {
 		BankDao bankDao=new BankDao();
 		return bankDao.getAllBanks();
 	}
+	
+	public Bank getBankById(int bId) {
+		BankDao bankDao=new BankDao();
+		return bankDao.getBankById(bId);
+	}
+	
+	public Bank updateBank(Bank bank) {
+		BankDao bankDao=new BankDao();
+		return bankDao.updateBank(bank);
+	}
+	public void deleteBank(Bank bank) {
+		BankDao bankDao=new BankDao();
+		bankDao.deleteBank(bank);
+	}
 }
